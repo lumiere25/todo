@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import './App.css';
 
 function App() {
@@ -20,10 +20,44 @@ function App() {
      }
    ]);
  }
+
   return (
     <div className="App">
+   
+ <>
+{todos.length > 0 ? (
+<>...</>
 
-    <h1>Todo List</h1>
+ {todos.map((t, index) => {
+   return (
+     <div id={t.id} key={index + t.id} value={t.id}>
+
+     {t.isCompleted ? (
+       <strike>
+        <p>{t.taskDescription}</p>
+       </strike>
+     ) : (
+       <>
+        <p>{t.taskDescription}</p>
+        <button 
+        id={t.id}
+        key={index + t.id}
+        value={t.id}
+        onClick={ () => 
+        console.log("clicked completed")}
+        >
+         complete
+        </button>
+        </>
+        )}
+        </div>
+        );
+        })}
+      </>
+   
+    
+  
+   <h1>Todo List</h1>
     <form onSubmit={addTodos}>
      <div>
      <label>
@@ -36,7 +70,7 @@ function App() {
           id: 0,
           taskDescription: "",
           isCompleted: false
-        });
+        })
       }
     />
   </label>
@@ -44,6 +78,7 @@ function App() {
     </div>  
  </form>
  </div>
+
 
   );
 }
